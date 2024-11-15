@@ -24,7 +24,7 @@ class CharacterDetailActivity : AppCompatActivity() {
             binding.characterDetailAlternateNames.text = it.alternate_names?.joinToString(", ")
             binding.characterDetailGender.text = it.gender
             binding.characterDetailDateOfBirth.text = it.dateOfBirth ?: "Unknown"
-            binding.characterDetailSpells.text = it.patronus ?: "Unknown"
+            binding.characterDetailSpells.text = it.spell ?: "Unknown"
             binding.characterDetailActor.text = it.actor ?: "Unknown"
             binding.characterDetailPatronus.text = it.patronus ?: "Unknown"
 

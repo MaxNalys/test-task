@@ -17,5 +17,6 @@ data class CharacterModel(
     val hogwartsStudent: Boolean,
     val hogwartsStaff: Boolean,
     val actor: String?,
-    val image: String?
+    val image: String?,
+    val spell: String?
 ) : Serializable

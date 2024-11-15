@@ -16,11 +16,11 @@
     <TextView
         android:id="@+id/HousesName"
         android:layout_width="wrap_content"
-        android:layout_height="20sp"
+        android:layout_height="@dimen/item_character_height"
         android:textColor="#FFFFFF"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textSize="14sp"
+        android:textSize="@dimen/item_txt_size"
         android:layout_gravity="center" />
 
 
