@@ -76,15 +76,7 @@
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:layout_weight="1"/>
-                <Button
-                    android:id="@+id/moreHouses"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#FF0E6EE4"
-                    android:background="?attr/selectableItemBackground"
-                    android:textSize="14sp"
-                    android:drawableLeft="@drawable/ic_more"
-                    android:drawablePadding="8dp" />
+
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

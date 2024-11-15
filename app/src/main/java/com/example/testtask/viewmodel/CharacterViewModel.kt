@@ -7,4 +7,9 @@ class CharacterViewModel(private val repository: CharacterRepository) : ViewMode
     val characters = liveData(Dispatchers.IO) {
         emit(repository.getCharacters())
     }
+
+    fun getCharactersByHouse(house: String) = liveData(Dispatchers.IO) {
+        val characters = repository.getCharactersByHouse(house)
+        emit(characters)
+    }
 }

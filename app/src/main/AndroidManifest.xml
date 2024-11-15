@@ -26,5 +26,17 @@
             android:exported="true">
         </activity>
 
+        <activity
+            android:name=".ui.CharactersByHome"
+            android:exported="true">
+        </activity>
+
+
+        <activity
+            android:name=".ui.AllCharactersActivity"
+            android:exported="true">
+        </activity>
+
+
     </application>
 </manifest>

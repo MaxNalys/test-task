@@ -18,4 +18,4 @@ data class CharacterModel(
     val hogwartsStaff: Boolean,
     val actor: String?,
     val image: String?
-) : Serializable  // Додаємо Serializable
+) : Serializable

@@ -9,10 +9,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import com.example.testtask.R
+import com.example.testtask.data.model.House
 import com.example.testtask.databinding.ActivityMainBinding
 import com.example.testtask.ui.adapter.CharacterAdapter
+import com.example.testtask.ui.adapter.HouseAdapter
 import com.example.testtask.viewmodel.CharacterViewModelFactory
-import com.example.testtask.ui.CharacterDetailActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,41 +23,62 @@ class MainActivity : AppCompatActivity() {
         CharacterViewModelFactory(CharacterRepository(ApiClient.apiService))
     }
     private lateinit var characterAdapter: CharacterAdapter
+    private lateinit var houseAdapter: HouseAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupRecyclerView()
+        setupCharacterRecyclerView()
+        setupHouseRecyclerView()
         observeCharacters()
+
+        binding.moreCharacters.setOnClickListener {
+            startActivity(Intent(this, AllCharactersActivity::class.java))
+        }
     }
 
-    private fun setupRecyclerView() {
-        // Установлено горизонтальне прокручування
-        binding.allCharactersRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        // Додано SnapHelper для плавного прокручування
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.allCharactersRecyclerView)
-
-        // Ініціалізація адаптера
-        characterAdapter = CharacterAdapter(emptyList(), ::onCharacterClick) // передаємо callback
+    private fun setupCharacterRecyclerView() {
+        binding.allCharactersRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        LinearSnapHelper().attachToRecyclerView(binding.allCharactersRecyclerView)
+        characterAdapter = CharacterAdapter(emptyList(), ::onCharacterClick)
         binding.allCharactersRecyclerView.adapter = characterAdapter
     }
 
+    private fun setupHouseRecyclerView() {
+        val houses = listOf(
+            House("Gryffindor", R.drawable.ic_gryffindor),
+            House("Slytherin", R.drawable.ic_slytherin),
+            House("Hufflepuff", R.drawable.ic_hufflepuff),
+            House("Ravenclaw", R.drawable.ic_ravenclaw)
+        )
+        binding.allHousesRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        houseAdapter = HouseAdapter(houses) { houseName ->
+            onHouseClick(houseName)
+        }
+        binding.allHousesRecyclerView.adapter = houseAdapter
+    }
+
+
     private fun observeCharacters() {
         viewModel.characters.observe(this) { characters ->
-            // Оновлення даних в адаптері
             characterAdapter.updateData(characters)
         }
     }
 
-    // Обробник кліку по персонажу
     private fun onCharacterClick(character: CharacterModel) {
-        // Створення Intent для переходу в деталі персонажа
-        val intent = Intent(this, CharacterDetailActivity::class.java).apply {
+        Intent(this, CharacterDetailActivity::class.java).apply {
             putExtra("character", character)
+        }.also {
+            startActivity(it)
+        }
+    }
+    private fun onHouseClick(houseName: String) {
+        val intent = Intent(this, CharactersByHome::class.java).apply {
+            putExtra("houseName", houseName)
         }
         startActivity(intent)
     }

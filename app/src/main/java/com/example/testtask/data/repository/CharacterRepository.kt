@@ -7,4 +7,8 @@ class CharacterRepository(private val apiService: ApiService) {
             throw Exception("Failed to fetch characters: ${response.code()}")
         }
     }
+
+    suspend fun getCharactersByHouse(house: String): List<CharacterModel> {
+        return apiService.getCharactersByHouse(house)
+    }
 }

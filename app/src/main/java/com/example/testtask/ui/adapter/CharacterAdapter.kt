@@ -9,7 +9,7 @@ import com.example.testtask.databinding.ItemCharacterBinding
 
 class CharacterAdapter(
     private var characters: List<CharacterModel>,
-    private val onCharacterClick: (CharacterModel) -> Unit // Callback для обробки кліку
+    private val onCharacterClick: (CharacterModel) -> Unit
 ) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
@@ -31,19 +31,16 @@ class CharacterAdapter(
 
     inner class CharacterViewHolder(private val binding: ItemCharacterBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(character: CharacterModel) {
-            // Заповнення даних в елементи
             binding.characterName.text = character.name
 
-            // Завантажуємо зображення за допомогою Glide
             Glide.with(binding.root.context)
-                .load(character.image) // Завантажуємо зображення з URL
-                .placeholder(android.R.drawable.progress_indeterminate_horizontal) // Показуємо індикатор завантаження
-                .error(android.R.drawable.stat_notify_error) // Показуємо індикатор помилки, якщо зображення не завантажилось
-                .into(binding.characterImage) // Встановлюємо зображення у ImageView
+                .load(character.image)
+                .placeholder(android.R.drawable.progress_indeterminate_horizontal)
+                .error(android.R.drawable.stat_notify_error)
+                .into(binding.characterImage)
 
-            // Задаємо клікабельність елемента
             binding.root.setOnClickListener {
-                onCharacterClick(character) // викликаємо callback
+                onCharacterClick(character)
             }
         }
     }
