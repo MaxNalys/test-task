@@ -2,31 +2,68 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/mainFragment">
 
-    <!-- HomeFragment, який містить вкладені фрагменти -->
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.testtask.ui.fragments.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/mainFragment"
+        android:name="com.example.testtask.ui.fragments.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main" />
 
-    <!-- Фрагменти, які будуть завантажені всередині HomeFragment -->
     <fragment
-        android:id="@+id/characterListFragment"
-        android:name="com.example.testtask.ui.fragments.CharacterListFragment"
-        android:label="CharacterListFragment"
-        tools:layout="@layout/fragment_character_list" />
+        android:id="@+id/characterDetailFragment"
+        android:name="com.example.testtask.ui.fragments.CharacterDetailFragment"
+        android:label="Character Detail"
+        tools:layout="@layout/fragment_character_detail">
+        <argument
+            android:name="character"
+            app:argType="com.example.testtask.data.model.CharacterModel" />
+    </fragment>
 
+
+    <fragment
+        android:id="@+id/allCharactersFragment"
+        android:name="com.example.testtask.ui.fragments.AllCharactersFragment"
+        android:label="All Characters"
+        tools:layout="@layout/fragment_all_characters">
+    </fragment>
     <fragment
         android:id="@+id/houseListFragment"
         android:name="com.example.testtask.ui.fragments.HouseListFragment"
-        android:label="HouseListFragment"
-        tools:layout="@layout/fragment_house_list" />
-
+        android:label="House List"
+        tools:layout="@layout/fragment_house_list">
+        <action
+            android:id="@+id/action_houseListFragment_to_charactersByHomeFragment"
+            app:destination="@id/charactersByHomeFragment">
+            <argument
+                android:name="houseName"
+                app:argType="string"/>
+        </action>
+    </fragment>
     <fragment
-        android:id="@+id/spellListFragment"
-        android:name="com.example.testtask.ui.fragments.SpellListFragment"
-        android:label="SpellListFragment"
-        tools:layout="@layout/fragment_spell_list" />
+        android:id="@+id/charactersByHomeFragment"
+        android:name="com.example.testtask.ui.fragments.CharactersByHomeFragment"
+        android:label="Characters By Home"
+        tools:layout="@layout/fragment_characters_by_home">
+        <argument
+            android:name="houseName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_charactersByHomeFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_mainFragment_to_charactersByHomeFragment"
+        app:destination="@id/charactersByHomeFragment" />
+
+    <action
+        android:id="@+id/action_characterListFragment_to_allCharactersFragment"
+        app:destination="@id/allCharactersFragment" />
+    <action
+        android:id="@+id/action_allCharactersFragment_to_characterDetailFragment"
+        app:destination="@id/characterDetailFragment" />
+    <action
+        android:id="@+id/action_characterListFragment_to_characterDetailFragment"
+        app:destination="@id/characterDetailFragment" />
 </navigation>

@@ -7,19 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testtask.R
 import com.example.testtask.data.model.CharacterModel
 import com.example.testtask.data.remote.ApiClient
 import com.example.testtask.data.repository.CharacterRepository
-import com.example.testtask.databinding.FragmentCharacterListBinding
+import com.example.testtask.databinding.FragmentAllCharactersBinding
 import com.example.testtask.ui.adapter.CharacterAdapter
 import com.example.testtask.viewmodel.CharacterViewModel
 import com.example.testtask.viewmodel.CharacterViewModelFactory
 
-class CharacterListFragment : Fragment() {
+class AllCharactersFragment : Fragment() {
 
-    private lateinit var binding: FragmentCharacterListBinding
+    private lateinit var binding: FragmentAllCharactersBinding
     private lateinit var characterAdapter: CharacterAdapter
     private lateinit var viewModel: CharacterViewModel
 
@@ -27,48 +28,33 @@ class CharacterListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentCharacterListBinding.inflate(inflater, container, false)
+        binding = FragmentAllCharactersBinding.inflate(inflater, container, false)
 
-        // Initialize the ViewModel
         val repository = CharacterRepository(ApiClient.apiService)
         val factory = CharacterViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory).get(CharacterViewModel::class.java)
 
-        // Set up RecyclerView
         setupRecyclerView()
-
-        // Observe characters from the ViewModel
         observeCharacters()
-
-
-        binding.moreCharacters.setOnClickListener {
-            findNavController().navigate(R.id.action_characterListFragment_to_allCharactersFragment)
-        }
 
         return binding.root
     }
 
     private fun setupRecyclerView() {
-        // Setup RecyclerView
-        binding.allCharactersRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.allCharacters.layoutManager = GridLayoutManager(context, 2)
         characterAdapter = CharacterAdapter(emptyList(), ::onCharacterClick)
-        binding.allCharactersRecyclerView.adapter = characterAdapter
+        binding.allCharacters.adapter = characterAdapter
     }
 
     private fun observeCharacters() {
-        // Observe characters live data and update adapter
         viewModel.characters.observe(viewLifecycleOwner) { characters ->
             characterAdapter.updateData(characters)
         }
     }
 
     private fun onCharacterClick(character: CharacterModel) {
-        val bundle = Bundle().apply {
-            putSerializable("character", character) // Передаємо героя як Serializable
-        }
-        findNavController().navigate(R.id.action_characterListFragment_to_characterDetailFragment, bundle)
+        // Передача даних через Bundle
+        val action = AllCharactersFragmentDirections.actionAllCharactersFragmentToCharacterDetailFragment(character)
+        findNavController().navigate(action)
     }
-
 }
-

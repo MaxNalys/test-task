@@ -3,7 +3,6 @@ package com.example.testtask.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.testtask.R
 
@@ -13,11 +12,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Ініціалізуємо NavController
-        val navController = findNavController(R.id.nav_host_fragment)
-
-        // Задаємо NavController для роботи з фрагментами через навігаційний граф
+        // Знаходимо NavHostFragment
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val controller = navHostFragment.navController
+        val navController = navHostFragment.navController
+
+        // Вимикаємо ActionBar, якщо не потрібно
+        supportActionBar?.hide()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        // Обробляємо натискання кнопки "Up" (назад) без ActionBar
+        val navController = (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

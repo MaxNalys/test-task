@@ -12,47 +12,46 @@ import com.example.testtask.databinding.FragmentCharacterDetailBinding
 
 class CharacterDetailFragment : Fragment() {
 
-    private var _binding: FragmentCharacterDetailBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentCharacterDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCharacterDetailBinding.inflate(inflater, container, false)
+        binding = FragmentCharacterDetailBinding.inflate(inflater, container, false)
+
+        // Отримання об'єкта CharacterModel
+        val character = arguments?.getSerializable("character") as? CharacterModel
+
+        // Відображення даних
+        character?.let { setupCharacterDetails(it) }
+
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun setupCharacterDetails(character: CharacterModel) {
+        binding.characterDetailName.text = character.name
+        binding.characterDetailAlternateNames.text = character.alternate_names?.joinToString(", ")
+        binding.characterDetailGender.text = character.gender
+        binding.characterDetailDateOfBirth.text = character.dateOfBirth ?: "Unknown"
+        binding.characterDetailSpells.text = character.spell ?: "Unknown"
+        binding.characterDetailActor.text = character.actor ?: "Unknown"
+        binding.characterDetailPatronus.text = character.patronus ?: "Unknown"
 
-        val character = arguments?.getSerializable("character") as? CharacterModel
-        character?.let {
-            binding.characterDetailName.text = it.name
-            binding.characterDetailAlternateNames.text = it.alternate_names?.joinToString(", ")
-            binding.characterDetailGender.text = it.gender
-            binding.characterDetailDateOfBirth.text = it.dateOfBirth ?: "Unknown"
-            binding.characterDetailSpells.text = it.spell ?: "Unknown"
-            binding.characterDetailActor.text = it.actor ?: "Unknown"
+        Glide.with(this)
+            .load(character.image)
+            .into(binding.characterDetailImage)
 
-            Glide.with(this)
-                .load(character.image)
-                .into(binding.characterDetailImage)
-
-            character.house?.let { house ->
-                when (house) {
-                    "Gryffindor" -> binding.characterDetailHouse.setImageResource(R.drawable.ic_gryffindor)
-                    "Hufflepuff" -> binding.characterDetailHouse.setImageResource(R.drawable.ic_hufflepuff)
-                    "Ravenclaw" -> binding.characterDetailHouse.setImageResource(R.drawable.ic_ravenclaw)
-                    "Slytherin" -> binding.characterDetailHouse.setImageResource(R.drawable.ic_slytherin)
-                    else -> binding.characterDetailHouse.setImageResource(R.drawable.ic_error)
-                }
+        character.house?.let { house ->
+            when (house) {
+                "Gryffindor" -> binding.characterDetailHouse.setImageResource(R.drawable.ic_gryffindor)
+                "Hufflepuff" -> binding.characterDetailHouse.setImageResource(R.drawable.ic_hufflepuff)
+                "Ravenclaw" -> binding.characterDetailHouse.setImageResource(R.drawable.ic_ravenclaw)
+                "Slytherin" -> binding.characterDetailHouse.setImageResource(R.drawable.ic_slytherin)
+                else -> binding.characterDetailHouse.setImageResource(R.drawable.ic_error)
             }
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
+
+
