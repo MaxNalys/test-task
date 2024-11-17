@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    tools:context=".ui.fragments.CharacterDetailFragment">
+
+    <ImageView
+        android:id="@+id/characterDetailImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="1" />
+
+    <TextView
+        android:id="@+id/characterDetailName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:text="Harry Potter"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/characterDetailImage" />
+
+    <TextView
+        android:id="@+id/characterDetailAlternateNames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Alternate Names: Harry, Potter, Boy Who Lived"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/characterDetailName" />
+
+    <TextView
+        android:id="@+id/characterDetailGenderLabel"
+        android:layout_width="@dimen/item_character_width"
+        android:layout_height="@dimen/item_character_height"
+        android:layout_marginTop="8dp"
+        android:text="Gender:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/characterDetailAlternateNames" />
+
+    <TextView
+        android:id="@+id/characterDetailGender"
+        android:layout_width="@dimen/item_character_width"
+        android:layout_height="@dimen/item_character_height"
+        android:layout_marginTop="8dp"
+        android:text="Male"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/characterDetailGenderLabel"
+        app:layout_constraintTop_toBottomOf="@id/characterDetailAlternateNames" />
+
+    <TextView
+        android:id="@+id/characterDetailHouseLabel"
+        android:layout_width="150sp"
+        android:layout_height="30sp"
+        android:layout_marginTop="16dp"
+        android:text="House:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/characterDetailDateOfBirthLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/characterDetailGender" />
+
+    <ImageView
+        android:id="@+id/characterDetailHouse"
+        android:layout_width="150dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/characterDetailHouseLabel"
+        app:layout_constraintTop_toBottomOf="@id/characterDetailGender" />
+
+    <TextView
+        android:id="@+id/characterDetailDateOfBirthLabel"
+        android:layout_width="@dimen/item_character_width"
+        android:layout_height="@dimen/item_character_height"
+        android:layout_marginTop="16dp"
+        android:text="Date of Birth:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/characterDetailHouse" />
+
+    <TextView
+        android:id="@+id/characterDetailDateOfBirth"
+        android:layout_width="@dimen/item_character_width"
+        android:layout_height="@dimen/item_character_height"
+        android:text="31-07-1980"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/characterDetailDateOfBirthLabel"
+        app:layout_constraintTop_toTopOf="@+id/characterDetailDateOfBirthLabel" />
+
+    <TextView
+        android:id="@+id/characterDetailSpellsLabel"
+        android:layout_width="@dimen/item_character_width"
+        android:layout_height="@dimen/item_character_height"
+        android:layout_marginTop="16dp"
+        android:text="Spells:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/characterDetailDateOfBirth" />
+
+    <TextView
+        android:id="@+id/characterDetailSpells"
+        android:layout_width="@dimen/item_character_width"
+        android:layout_height="@dimen/item_character_height"
+        android:text="Expelliarmus"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/characterDetailSpellsLabel"
+        app:layout_constraintTop_toTopOf="@+id/characterDetailSpellsLabel" />
+
+    <TextView
+        android:id="@+id/characterDetailPatronusLabel"
+        android:layout_width="@dimen/item_character_width"
+        android:layout_height="@dimen/item_character_height"
+        android:layout_marginTop="16dp"
+        android:text="Patronus:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/characterDetailSpells" />
+
+    <TextView
+        android:id="@+id/characterDetailPatronus"
+        android:layout_width="@dimen/item_character_width"
+        android:layout_height="@dimen/item_character_height"
+        android:text="Doe"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/characterDetailPatronusLabel"
+        app:layout_constraintTop_toTopOf="@+id/characterDetailPatronusLabel" />
+
+
+    <TextView
+        android:id="@+id/characterDetailActorLabel"
+        android:layout_width="@dimen/item_character_width"
+        android:layout_height="@dimen/item_character_height"
+        android:layout_marginTop="16dp"
+        android:text="Actor:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/characterDetailPatronus" />
+
+    <TextView
+        android:id="@+id/characterDetailActor"
+        android:layout_width="@dimen/item_character_width"
+        android:layout_height="@dimen/item_character_height"
+        android:text="Daniel Radcliffe"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/characterDetailActorLabel"
+        app:layout_constraintTop_toTopOf="@+id/characterDetailActorLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

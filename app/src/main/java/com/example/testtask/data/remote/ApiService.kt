@@ -1,3 +1,6 @@
+package com.example.testtask.data.remote
+
+import com.example.testtask.data.model.CharacterModel
 import com.example.testtask.data.model.Spell
 import retrofit2.Response
 import retrofit2.http.GET

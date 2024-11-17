@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.testtask.data.model.Spell
+import com.example.testtask.data.remote.ApiClient
 import com.example.testtask.data.repository.SpellRepository
 import com.example.testtask.databinding.ActivityAllCharactersBinding
 import com.example.testtask.ui.adapter.SpellAdapter

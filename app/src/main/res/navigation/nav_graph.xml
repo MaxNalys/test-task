@@ -1,0 +1,32 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <!-- HomeFragment, який містить вкладені фрагменти -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.testtask.ui.fragments.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" />
+
+    <!-- Фрагменти, які будуть завантажені всередині HomeFragment -->
+    <fragment
+        android:id="@+id/characterListFragment"
+        android:name="com.example.testtask.ui.fragments.CharacterListFragment"
+        android:label="CharacterListFragment"
+        tools:layout="@layout/fragment_character_list" />
+
+    <fragment
+        android:id="@+id/houseListFragment"
+        android:name="com.example.testtask.ui.fragments.HouseListFragment"
+        android:label="HouseListFragment"
+        tools:layout="@layout/fragment_house_list" />
+
+    <fragment
+        android:id="@+id/spellListFragment"
+        android:name="com.example.testtask.ui.fragments.SpellListFragment"
+        android:label="SpellListFragment"
+        tools:layout="@layout/fragment_spell_list" />
+</navigation>

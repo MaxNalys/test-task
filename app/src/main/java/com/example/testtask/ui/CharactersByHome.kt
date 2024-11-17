@@ -1,8 +1,6 @@
 package com.example.testtask.ui
 
-import CharacterModel
-import CharacterRepository
-import CharacterViewModel
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +9,10 @@ import com.example.testtask.viewmodel.CharacterViewModelFactory
 import com.example.testtask.databinding.ActivityAllCharactersBinding
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.testtask.data.model.CharacterModel
+import com.example.testtask.data.remote.ApiClient
+import com.example.testtask.data.repository.CharacterRepository
+import com.example.testtask.viewmodel.CharacterViewModel
 
 class CharactersByHome : AppCompatActivity() {
 

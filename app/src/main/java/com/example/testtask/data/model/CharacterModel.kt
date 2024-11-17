@@ -1,3 +1,5 @@
+package com.example.testtask.data.model
+
 import java.io.Serializable
 
 data class CharacterModel(

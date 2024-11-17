@@ -1,3 +1,7 @@
+package com.example.testtask.data.repository
+
+import com.example.testtask.data.model.CharacterModel
+import com.example.testtask.data.remote.ApiService
 
 class CharacterRepository(private val apiService: ApiService) {
     suspend fun getCharacters(): List<CharacterModel> {

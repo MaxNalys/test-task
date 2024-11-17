@@ -1,24 +1,32 @@
-package com.example.testtask.ui
+package com.example.testtask.ui.fragments
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.testtask.R
 import com.example.testtask.data.model.CharacterModel
-import com.example.testtask.databinding.ActivityCharacterDetailBinding
+import com.example.testtask.databinding.FragmentCharacterDetailBinding
 
-class CharacterDetailActivity : AppCompatActivity() {
+class CharacterDetailFragment : Fragment() {
 
-    private lateinit var binding: ActivityCharacterDetailBinding
+    private var _binding: FragmentCharacterDetailBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentCharacterDetailBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        binding = ActivityCharacterDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val character = intent.getSerializableExtra("character") as? CharacterModel
-
+        val character = arguments?.getSerializable("character") as? CharacterModel
         character?.let {
             binding.characterDetailName.text = it.name
             binding.characterDetailAlternateNames.text = it.alternate_names?.joinToString(", ")
@@ -26,7 +34,6 @@ class CharacterDetailActivity : AppCompatActivity() {
             binding.characterDetailDateOfBirth.text = it.dateOfBirth ?: "Unknown"
             binding.characterDetailSpells.text = it.spell ?: "Unknown"
             binding.characterDetailActor.text = it.actor ?: "Unknown"
-            binding.characterDetailPatronus.text = it.patronus ?: "Unknown"
 
             Glide.with(this)
                 .load(character.image)
@@ -42,5 +49,10 @@ class CharacterDetailActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

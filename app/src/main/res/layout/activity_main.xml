@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#111111"
-  >
+    tools:context=".ui.MainActivity">
 
     <!-- Toolbar -->
     <com.google.android.material.appbar.MaterialToolbar
@@ -17,109 +16,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/app_name"
-        app:titleTextColor="#FFFFFF"
-        />
+        app:titleTextColor="#FFFFFF">
 
-    <ScrollView
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:background="#111111"
         app:layout_constraintTop_toBottomOf="@id/topAppBar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:tabSelectedTextColor="#66B2FF"
+        app:tabTextColor="#FFFFFF"
+        tools:ignore="MissingConstraints">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:text="All" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/all_characters"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:layout_weight="1"/>
-                <Button
-                    android:id="@+id/moreCharacters"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#FF0E6EE4"
-                    android:background="?attr/selectableItemBackground"
-                    android:textSize="14sp"
-                    android:drawableLeft="@drawable/ic_more"
-                    android:drawablePadding="8dp" />
-            </LinearLayout>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Settings" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/allCharactersRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scrollbars="horizontal"
-                android:overScrollMode="never" />
+    </com.google.android.material.tabs.TabLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/item_padding_top"
-                android:gravity="center_vertical">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/all_houses"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:layout_weight="1"/>
 
-            </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/allHousesRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scrollbars="horizontal"
-                android:overScrollMode="never" />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:navGraph="@navigation/nav_graph"
+        app:defaultNavHost="true"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingTop="@dimen/item_padding_top">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/all_spells"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:layout_weight="1"/>
-                <Button
-                    android:id="@+id/moreSpells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#FF0E6EE4"
-                    android:background="?attr/selectableItemBackground"
-                    android:textSize="14sp"
-                    android:drawableLeft="@drawable/ic_more"
-                    android:drawablePadding="8dp" />
 
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/allSpellsRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scrollbars="horizontal"
-                android:overScrollMode="never" />
-        </LinearLayout>
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

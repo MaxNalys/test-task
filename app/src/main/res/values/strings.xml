@@ -3,4 +3,6 @@
     <string name="all_characters">All Characters</string>
     <string name="all_spells">All Spells</string>
     <string name="all_houses">All Houses</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

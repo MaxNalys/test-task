@@ -1,6 +1,8 @@
+package com.example.testtask.viewmodel
+
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
+import com.example.testtask.data.repository.CharacterRepository
 import kotlinx.coroutines.Dispatchers
 
 class CharacterViewModel(private val repository: CharacterRepository) : ViewModel() {

@@ -1,15 +1,17 @@
 package com.example.testtask.ui
 
-import CharacterModel
-import CharacterRepository
-import CharacterViewModel
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.testtask.data.model.CharacterModel
+import com.example.testtask.data.remote.ApiClient
+import com.example.testtask.data.repository.CharacterRepository
 import com.example.testtask.databinding.ActivityAllCharactersBinding
 import com.example.testtask.ui.adapter.CharacterAdapter
+import com.example.testtask.viewmodel.CharacterViewModel
 import com.example.testtask.viewmodel.CharacterViewModelFactory
 
 class AllCharactersActivity : AppCompatActivity() {

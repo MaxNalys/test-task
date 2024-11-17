@@ -1,10 +1,9 @@
 package com.example.testtask.viewmodel
 
-import CharacterRepository
-import CharacterViewModel
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-
+import com.example.testtask.data.repository.CharacterRepository
 
 
 class CharacterViewModelFactory(private val repository: CharacterRepository) : ViewModelProvider.Factory {
