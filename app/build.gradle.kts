@@ -55,7 +55,7 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.glide.v4120)  // актуальна версія Glide
+    implementation(libs.glide.v4120)
     implementation (libs.viewbinding)
     implementation (libs.retrofit)
     implementation (libs.squareup.picasso)

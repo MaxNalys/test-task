@@ -1,6 +1,5 @@
 package com.example.testtask.ui
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -77,23 +76,13 @@ class MainActivity : AppCompatActivity() {
                     val spells = spellViewModel.spells.value ?: emptyList()
                     if (spells.isNotEmpty()) {
                         val updatedCharacters = viewModel.assignRandomSpellsToCharacters(spells)
-
-                        val charactersWithTooManySpells =
-                            updatedCharacters.filter { it.spells.size > 3 }
-
-                        if (charactersWithTooManySpells.isNotEmpty()) {
-                            Toast.makeText(
-                                this@MainActivity, "\n" +
-                                        "Maximum number of spells!", Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            characterAdapter.updateData(updatedCharacters)
-                            Toast.makeText(
-                                this@MainActivity,
-                                "You have successfully assigned spells to characters!",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                        characterAdapter.updateData(updatedCharacters)
+                        characterAdapter.updateData(updatedCharacters)
+                        Toast.makeText(
+                            this@MainActivity,
+                            "You have successfully assigned spells to characters!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     } else {
                         Toast.makeText(this@MainActivity, "No spells available", Toast.LENGTH_SHORT)
                             .show()
@@ -109,7 +98,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
 
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            viewModel.getCharacters()
+        }
     }
 
     private fun setupCharacterRecyclerView() {
@@ -148,7 +143,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onHouseClick(houseName: String) {
-        val intent = Intent(this, CharactersByHome::class.java).apply {
+        val intent = Intent(this, CharactersByHomeActivity::class.java).apply {
             putExtra("houseName", houseName)
         }
         startActivity(intent)

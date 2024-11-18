@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.testtask.data.model.CharacterModel
 import com.example.testtask.data.remote.ApiClient
@@ -14,7 +15,7 @@ import com.example.testtask.ui.adapter.CharacterAdapter
 import com.example.testtask.utils.SharedPreferencesHelper
 import com.example.testtask.viewmodel.CharacterViewModel
 import com.example.testtask.viewmodel.CharacterViewModelFactory
-
+import kotlinx.coroutines.launch
 
 class AllCharactersActivity : AppCompatActivity() {
 
@@ -36,7 +37,13 @@ class AllCharactersActivity : AppCompatActivity() {
         initRecyclerView()
         observeViewModel()
     }
+    override fun onResume() {
+        super.onResume()
 
+        lifecycleScope.launch {
+            viewModel.getCharacters()
+        }
+    }
     private fun initRecyclerView() {
         binding.allCharactersByHome.layoutManager = GridLayoutManager(this, 2)
         characterAdapter = CharacterAdapter(emptyList(), ::onCharacterClick)

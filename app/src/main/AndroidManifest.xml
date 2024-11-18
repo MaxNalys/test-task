@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name=".ui.CharactersByHome"
+            android:name=".ui.CharactersByHomeActivity"
             android:exported="true">
         </activity>
 

@@ -1,7 +1,8 @@
 package com.example.testtask.viewmodel
 
-
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.testtask.data.model.CharacterModel
@@ -13,11 +14,13 @@ import kotlinx.coroutines.withContext
 
 class CharacterViewModel(private val repository: CharacterRepository, private val sharedPreferencesHelper: SharedPreferencesHelper) : ViewModel() {
 
-    val characters = liveData(Dispatchers.IO) {
-        emit(repository.getCharacters())
+    private val _characters: MutableLiveData<List<CharacterModel>> = MutableLiveData()
+    val characters: LiveData<List<CharacterModel>> = _characters
+
+    suspend fun getCharacters() = withContext(Dispatchers.IO) {
+        val characters = repository.getCharacters()
+        _characters.postValue(characters)
     }
-
-
 
     fun getCharactersByHouse(house: String) = liveData(Dispatchers.IO) {
         val characters = repository.getCharactersByHouse(house)
@@ -32,21 +35,15 @@ class CharacterViewModel(private val repository: CharacterRepository, private va
         val characters = sharedPreferencesHelper.getCharacters().toMutableList()
         val character = characters.find { it.name == characterName }
         character?.let {
-            Log.d("CharacterViewModel", "Character found: ${it.name}")
-
             if (it.spells == null) {
                 it.spells = mutableListOf()
-                Log.d("CharacterViewModel", "Initialized spells for character ${it.name}")
             }
 
             if (!it.spells.contains(spellName)) {
                 it.spells.add(spellName)
-                sharedPreferencesHelper.saveCharacters(characters) // Зберігаємо зміни в SharedPreferences
-                Log.d("CharacterViewModel", "Spell $spellName added to character ${it.name}")
-            } else {
-                Log.d("CharacterViewModel", "Spell $spellName already exists for character ${it.name}")
+                sharedPreferencesHelper.saveCharacters(characters)
             }
-        } ?: Log.d("CharacterViewModel", "Character $characterName not found")
+        }
     }
 
 }

@@ -1,6 +1,5 @@
 package com.example.testtask.viewmodel
 
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.testtask.data.repository.CharacterRepository

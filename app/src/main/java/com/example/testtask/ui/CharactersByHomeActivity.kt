@@ -1,6 +1,5 @@
 package com.example.testtask.ui
 
-
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -13,10 +12,9 @@ import com.example.testtask.databinding.ActivityAllCharactersBinding
 import com.example.testtask.ui.adapter.CharacterAdapter
 import com.example.testtask.utils.SharedPreferencesHelper
 import com.example.testtask.viewmodel.CharacterViewModel
-
 import com.example.testtask.viewmodel.CharacterViewModelFactory
 
-class CharactersByHome : AppCompatActivity() {
+class CharactersByHomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAllCharactersBinding
     private lateinit var characterAdapter: CharacterAdapter
@@ -58,8 +56,5 @@ class CharactersByHome : AppCompatActivity() {
         val intent = Intent(this, CharacterDetailActivity::class.java).apply {
             putExtra("character", character)
         }
-
     }
-
-
 }

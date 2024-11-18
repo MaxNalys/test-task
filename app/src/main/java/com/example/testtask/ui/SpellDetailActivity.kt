@@ -1,6 +1,5 @@
 package com.example.testtask.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -38,7 +37,6 @@ class SpellDetailActivity : AppCompatActivity() {
 
         sharedPreferencesHelper = SharedPreferencesHelper(this)
 
-        // Отримуємо переданий спелл
         val spell = intent.getSerializableExtra("spell") as? Spell
 
         spell?.let {
@@ -46,7 +44,6 @@ class SpellDetailActivity : AppCompatActivity() {
             binding.spellDescription.text = it.description ?: "No description available"
             binding.spellDetailImage.setImageResource(R.drawable.magic_wand)
 
-            // Оновлюємо вибір персонажа в спінері
             viewModel.characters.observe(this) { characters ->
                 val characterNames = characters.map { it.name }
                 val spinnerAdapter = ArrayAdapter(
@@ -59,35 +56,60 @@ class SpellDetailActivity : AppCompatActivity() {
                 binding.characterSpinner.adapter = spinnerAdapter
             }
 
-            // Біндінг кнопки "Learn Spell"
             binding.learnSpellButton.setOnClickListener {
                 val selectedCharacterName = binding.characterSpinner.selectedItem.toString()
                 val selectedSpellName = spell.name
                 if (selectedCharacterName.isNotEmpty() && selectedSpellName.isNotEmpty()) {
-
                     lifecycleScope.launch {
                         try {
-                            viewModel.assignSpellToCharacterByName(selectedCharacterName, selectedSpellName)
-
+                            viewModel.assignSpellToCharacterByName(
+                                selectedCharacterName,
+                                selectedSpellName
+                            )
 
                             val updatedCharacters = sharedPreferencesHelper.getCharacters()
-
                             val updatedCharacterNames = updatedCharacters.map { it.name }
-                            val adapter = ArrayAdapter(this@SpellDetailActivity, android.R.layout.simple_spinner_item, updatedCharacterNames)
+                            val adapter = ArrayAdapter(
+                                this@SpellDetailActivity,
+                                android.R.layout.simple_spinner_item,
+                                updatedCharacterNames
+                            )
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                             binding.characterSpinner.adapter = adapter
 
-                            // Показуємо повідомлення користувачу
-                            Toast.makeText(this@SpellDetailActivity, "Spell added successfully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@SpellDetailActivity,
+                                "Spell added successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
 
                         } catch (e: Exception) {
                             Log.e("SpellDetailActivity", "Error assigning spell", e)
-                            Toast.makeText(this@SpellDetailActivity, "Failed to assign spell", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@SpellDetailActivity,
+                                "Failed to assign spell",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 } else {
-                    Toast.makeText(this, "Please select a character and a spell.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Please select a character and a spell.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            try {
+                viewModel.getCharacters()
+            } catch (e: Exception) {
+                Log.e("SpellDetailActivity", "Error fetching characters", e)
             }
         }
     }
