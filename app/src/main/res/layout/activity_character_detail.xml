@@ -119,7 +119,7 @@
     <TextView
         android:id="@+id/characterDetailSpells"
         android:layout_width="@dimen/item_character_width"
-        android:layout_height="@dimen/item_character_height"
+        android:layout_height="wrap_content"
         android:text="Expelliarmus"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

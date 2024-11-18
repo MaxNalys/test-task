@@ -1,17 +1,18 @@
 package com.example.testtask.viewmodel
 
-import CharacterRepository
-import CharacterViewModel
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.testtask.data.repository.CharacterRepository
+import com.example.testtask.utils.SharedPreferencesHelper
 
-
-
-class CharacterViewModelFactory(private val repository: CharacterRepository) : ViewModelProvider.Factory {
+class CharacterViewModelFactory(
+    private val repository: CharacterRepository,
+    private val sharedPreferencesHelper: SharedPreferencesHelper
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CharacterViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return CharacterViewModel(repository) as T
+            return CharacterViewModel(repository, sharedPreferencesHelper) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

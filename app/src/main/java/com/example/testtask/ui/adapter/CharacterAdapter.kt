@@ -1,10 +1,10 @@
 package com.example.testtask.ui.adapter
 
-import CharacterModel
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.testtask.data.model.CharacterModel
 import com.example.testtask.databinding.ItemCharacterBinding
 
 class CharacterAdapter(

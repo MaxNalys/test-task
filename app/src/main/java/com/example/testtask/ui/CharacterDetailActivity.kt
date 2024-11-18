@@ -1,10 +1,10 @@
 package com.example.testtask.ui
 
-import CharacterModel
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.testtask.R
+import com.example.testtask.data.model.CharacterModel
 import com.example.testtask.databinding.ActivityCharacterDetailBinding
 
 class CharacterDetailActivity : AppCompatActivity() {
@@ -24,7 +24,14 @@ class CharacterDetailActivity : AppCompatActivity() {
             binding.characterDetailAlternateNames.text = it.alternate_names?.joinToString(", ")
             binding.characterDetailGender.text = it.gender
             binding.characterDetailDateOfBirth.text = it.dateOfBirth ?: "Unknown"
-            binding.characterDetailSpells.text = it.spell ?: "Unknown"
+
+            // Перевіряємо, чи є спели у персонажа
+            if (character.spells.isNullOrEmpty()) {  // Перевірка на null або порожній список
+                binding.characterDetailSpells.text = "No spells assigned"  // Якщо спелів немає
+            } else {
+                binding.characterDetailSpells.text = character.spells.joinToString("\n") // Виводимо список спелів
+            }
+
             binding.characterDetailActor.text = it.actor ?: "Unknown"
             binding.characterDetailPatronus.text = it.patronus ?: "Unknown"
 
