@@ -12,5 +12,4 @@ class SpellViewModel(private val spellRepository: SpellRepository) : ViewModel()
         val data = spellRepository.getSpells()
         emit(data)
     }
-
 }

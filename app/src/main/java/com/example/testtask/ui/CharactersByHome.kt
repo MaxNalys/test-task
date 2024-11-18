@@ -58,7 +58,7 @@ class CharactersByHome : AppCompatActivity() {
         val intent = Intent(this, CharacterDetailActivity::class.java).apply {
             putExtra("character", character)
         }
-        startActivity(intent)
+
     }
 
 

@@ -3,4 +3,6 @@
     <string name="all_characters">All Characters</string>
     <string name="all_spells">All Spells</string>
     <string name="all_houses">All Houses</string>
+    <string name="you_can_teach_this_spell_to_any_character">You can teach this spell to any character</string>
+    <string name="learn_spell_btn">Learn Spell</string>
 </resources>
