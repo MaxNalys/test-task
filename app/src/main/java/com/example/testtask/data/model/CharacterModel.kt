@@ -1,3 +1,5 @@
+package com.example.testtask.data.model
+
 import java.io.Serializable
 
 data class CharacterModel(
@@ -17,5 +19,6 @@ data class CharacterModel(
     val hogwartsStudent: Boolean,
     val hogwartsStaff: Boolean,
     val actor: String?,
-    val image: String?
-) : Serializable  // Додаємо Serializable
+    val image: String?,
+    var spells: MutableList<String> = mutableListOf()
+) : Serializable

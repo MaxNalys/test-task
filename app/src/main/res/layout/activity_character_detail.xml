@@ -7,19 +7,16 @@
     android:padding="16dp"
     tools:context=".ui.CharacterDetailActivity">
 
-    <!-- Зображення персонажа -->
     <ImageView
         android:id="@+id/characterDetailImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.35"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="1" />
 
-    <!-- Назва персонажа -->
     <TextView
         android:id="@+id/characterDetailName"
         android:layout_width="wrap_content"
@@ -33,7 +30,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/characterDetailImage" />
 
-    <!-- Альтернативні імена -->
     <TextView
         android:id="@+id/characterDetailAlternateNames"
         android:layout_width="wrap_content"
@@ -47,7 +43,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/characterDetailName" />
 
-    <!-- Стать персонажа -->
     <TextView
         android:id="@+id/characterDetailGenderLabel"
         android:layout_width="@dimen/item_character_width"
@@ -69,7 +64,6 @@
         app:layout_constraintStart_toEndOf="@id/characterDetailGenderLabel"
         app:layout_constraintTop_toBottomOf="@id/characterDetailAlternateNames" />
 
-    <!-- Зображення будинку -->
     <TextView
         android:id="@+id/characterDetailHouseLabel"
         android:layout_width="150sp"
@@ -92,7 +86,6 @@
         app:layout_constraintStart_toEndOf="@+id/characterDetailHouseLabel"
         app:layout_constraintTop_toBottomOf="@id/characterDetailGender" />
 
-    <!-- Дата народження -->
     <TextView
         android:id="@+id/characterDetailDateOfBirthLabel"
         android:layout_width="@dimen/item_character_width"
@@ -113,7 +106,6 @@
         app:layout_constraintStart_toEndOf="@id/characterDetailDateOfBirthLabel"
         app:layout_constraintTop_toTopOf="@+id/characterDetailDateOfBirthLabel" />
 
-    <!-- Сплески -->
     <TextView
         android:id="@+id/characterDetailSpellsLabel"
         android:layout_width="@dimen/item_character_width"
@@ -127,14 +119,13 @@
     <TextView
         android:id="@+id/characterDetailSpells"
         android:layout_width="@dimen/item_character_width"
-        android:layout_height="@dimen/item_character_height"
+        android:layout_height="wrap_content"
         android:text="Expelliarmus"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/characterDetailSpellsLabel"
         app:layout_constraintTop_toTopOf="@+id/characterDetailSpellsLabel" />
 
-    <!-- Patronus -->
     <TextView
         android:id="@+id/characterDetailPatronusLabel"
         android:layout_width="@dimen/item_character_width"
@@ -156,7 +147,6 @@
         app:layout_constraintTop_toTopOf="@+id/characterDetailPatronusLabel" />
 
 
-    <!-- Actor -->
     <TextView
         android:id="@+id/characterDetailActorLabel"
         android:layout_width="@dimen/item_character_width"
